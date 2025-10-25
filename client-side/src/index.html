@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokedex do pae</title>
+    <link rel="stylesheet" href="./css/output.css" />
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-gray-100 font-sans p-6"
+  >
+    <main class="container mx-auto my-10">
+      <!-- detalhes pokemon -->
+      <div
+        class="relative bg-gradient-to-b from-red-400 to-red-600 p-8 rounded-3xl mb-10 max-w-xl mx-auto space-y-6 text-white shadow-2xl border-4 border-red-700"
+      >
+        <!-- previous pokemon -->
+        <div
+          id="divPreviousLateral"
+          data-id=""
+          class="absolute top-0 -left-50 w-40 h-40 bg-gray-400/50 rounded-2xl text-center border-2 border-white/20"
+        >
+          <img id="previousImg" src="" class="mx-auto drop-shadow-xl" />
+          <h3
+            id="previousName"
+            class="capitalize font-bold text-lg tracking-wide"
+          ></h3>
+          <span id="previousId" class="text-sm opacity-80"></span>
+        </div>
+
+        <!-- next pokemon -->
+        <div
+          id="divNextLateral"
+          data-id=""
+          class="absolute top-0 -right-50 w-40 h-40 bg-gray-400/50 rounded-2xl text-center border-2 border-white/20"
+        >
+          <img id="nextImg" src="" class="mx-auto drop-shadow-xl" />
+          <h3
+            id="nextName"
+            class="capitalize font-bold text-lg tracking-wide"
+          ></h3>
+          <span id="nextId" class="text-sm opacity-80"></span>
+        </div>
+
+        <!-- imagem -->
+        <div class="flex justify-center bg-gray-300/50 rounded-2xl">
+          <img
+            id="pokemonImg"
+            src=""
+            alt=""
+            class="w-40 h-40 object-contain drop-shadow-xl"
+          />
+        </div>
+
+        <!-- ID -->
+        <div class="text-center">
+          <span
+            id="pokemonId"
+            class="text-sm font-mono bg-white/20 px-3 py-1 rounded-full"
+            >#0000</span
+          >
+        </div>
+
+        <!-- nome -->
+        <div class="text-center">
+          <span id="pokemonName" class="text-2xl font-bold capitalize"></span>
+        </div>
+
+        <!-- descrição -->
+        <div class="text-center">
+          <span
+            id="pokemonDescription"
+            class="text-lg font-semibold capitalize"
+          ></span>
+        </div>
+
+        <!-- altura e peso -->
+        <div
+          class="flex justify-between text-center bg-white/10 rounded-xl py-3 px-5"
+        >
+          <div>
+            <span class="block text-xs tracking-wider opacity-80">HEIGHT</span>
+            <span id="pokemonHeight" class="block font-bold text-lg">0.0m</span>
+          </div>
+          <div>
+            <span class="block text-xs tracking-wider opacity-80">WEIGHT</span>
+            <span id="pokemonWeight" class="block font-bold text-lg">0kg</span>
+          </div>
+        </div>
+
+        <!-- base exp -->
+        <div
+          class="flex justify-between items-center bg-white/10 rounded-xl py-3 px-5"
+        >
+          <span class="text-xs tracking-wider opacity-80">BASE EXP</span>
+          <span id="pokemonBaseExp" class="font-bold text-lg">0</span>
+        </div>
+
+        <!-- stats -->
+        <div>
+          <span class="block mb-2 text-center font-bold tracking-wide text-sm"
+            >STATS</span
+          >
+          <div
+            id="pokemonDivStats"
+            class="flex flex-wrap justify-center gap-3 bg-white/10 p-3 rounded-xl"
+          ></div>
+        </div>
+
+        <!-- types -->
+        <div>
+          <span class="block mb-2 text-center font-bold tracking-wide text-sm"
+            >TYPES</span
+          >
+          <div
+            id="pokemonDivTypes"
+            class="flex flex-wrap justify-center gap-3 bg-white/10 p-3 rounded-xl"
+          ></div>
+        </div>
+
+        <!-- evoluções -->
+        <div>
+          <span class="block mb-2 text-center font-bold tracking-wide text-sm">
+            EVOLUTIONS
+          </span>
+          <div
+            id="pokemonEvolutions"
+            class="flex flex-wrap justify-center items-center gap-3 bg-white/10 p-3 rounded-xl text-center"
+          ></div>
+        </div>
+      </div>
+
+      <!-- navegação -->
+      <div class="flex justify-center gap-12">
+        <button
+          id="previousButton"
+          class="bg-red-600 py-4 px-8 text-xl rounded-2xl font-semibold text-white shadow-[0_0_20px_rgba(239,68,68,0.6)] hover:shadow-[0_0_30px_rgba(239,68,68,0.8)] transition-all duration-300 disabled:opacity-50 disabled:text-gray-300"
+        >
+          Previous
+        </button>
+
+        <button
+          id="nextButton"
+          class="bg-red-600 py-4 px-11 text-xl rounded-2xl font-semibold text-white shadow-[0_0_20px_rgba(239,68,68,0.6)] hover:shadow-[0_0_30px_rgba(239,68,68,0.8)] transition-all duration-300"
+        >
+          Next
+        </button>
+      </div>
+    </main>
+
+    <!-- cards pokemons -->
+    <section
+      id="listaPokemons"
+      class="container mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-10 gap-5 p-5"
+    ></section>
+
+    <script src="./js/script.js" type="module"></script>
+  </body>
+</html>
