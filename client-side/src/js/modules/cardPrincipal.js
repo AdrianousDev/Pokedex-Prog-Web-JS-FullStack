@@ -29,16 +29,20 @@ export default async function cardPrincipal(id) {
 function updatePokemonImage(pokemonDados) {
   const pokemonImg = document.querySelector("#pokemonImg");
 
-  if (!pokemonImg) {
-    return;
-  }
+  if (!pokemonImg) return;
 
-  if (!pokemonDados.sprites?.front_default) {
-    pokemonImg.src = "./images/not-found.png";
+  const imagemPadrao = "./images/not-found.png";
+
+  if (pokemonDados === null || !pokemonDados.sprites?.front_default) {
+    pokemonImg.src = imagemPadrao;
     return;
   }
 
   pokemonImg.src = pokemonDados.sprites.front_default;
+
+  pokemonImg.onerror = () => {
+    pokemonImg.src = imagemPadrao;
+  };
 }
 
 function updatePokemonId(pokemonDados) {
@@ -48,7 +52,7 @@ function updatePokemonId(pokemonDados) {
     return;
   }
 
-  if (!pokemonDados) {
+  if (pokemonDados === null || !pokemonDados) {
     return;
   }
 
@@ -64,7 +68,7 @@ function updatePokemonName(pokemonDados) {
     return;
   }
 
-  if (!pokemonDados) {
+  if (pokemonDados === null || !pokemonDados) {
     return;
   }
 
@@ -78,7 +82,7 @@ function updatePokemonDescription(pokemonDados) {
     return;
   }
 
-  if (!pokemonDados) {
+  if (pokemonDados === null || !pokemonDados) {
     pokemonDescription.textContent = "Descrição Padrão.";
     return;
   }
@@ -94,7 +98,7 @@ function updatePokemonDimensions(pokemonDados) {
     return;
   }
 
-  if (!pokemonDados) {
+  if (pokemonDados === null || !pokemonDados) {
     return;
   }
 
@@ -109,7 +113,7 @@ function updatePokemonBaseExp(pokemonDados) {
     return;
   }
 
-  if (!pokemonDados) {
+  if (pokemonDados === null || !pokemonDados) {
     return;
   }
 
@@ -119,11 +123,11 @@ function updatePokemonBaseExp(pokemonDados) {
 function updatePokemonStats(pokemonDados) {
   const pokemonDivStats = document.querySelector("#pokemonDivStats");
 
-  if (!pokemonDados) {
+  if (!pokemonDivStats) {
     return;
   }
 
-  if (!pokemonDivStats) {
+  if (pokemonDados === null || !pokemonDados) {
     return;
   }
 
@@ -140,11 +144,11 @@ function updatePokemonStats(pokemonDados) {
 function updatePokemonTypes(pokemonDados) {
   const pokemonDivTypes = document.querySelector("#pokemonDivTypes");
 
-  if (!pokemonDados) {
+  if (!pokemonDivTypes) {
     return;
   }
 
-  if (!pokemonDivTypes) {
+  if (pokemonDados === null || !pokemonDados) {
     return;
   }
 
@@ -190,7 +194,7 @@ async function updatePreviousPokemon(pokemonDados) {
     return;
   }
 
-  if (!pokemonDados) {
+  if (pokemonDados === null || !pokemonDados) {
     return;
   }
 
@@ -217,6 +221,9 @@ async function updatePreviousPokemon(pokemonDados) {
   divPreviousLateral.dataset.id = idPrevious;
 
   previousImg.src = previousPokemon.sprites.front_default;
+  previousImg.onerror = () => {
+    previousImg.src = "./images/not-found.png";
+  };
 
   previousName.textContent = previousPokemon.name;
 
@@ -234,7 +241,7 @@ async function updateNextPokemon(pokemonDados) {
     return;
   }
 
-  if (!pokemonDados) {
+  if (pokemonDados === null || !pokemonDados) {
     return;
   }
 
@@ -253,6 +260,9 @@ async function updateNextPokemon(pokemonDados) {
   divNextLateral.dataset.id = idNext;
 
   nextImg.src = nextPokemon.sprites.front_default;
+  nextImg.onerror = () => {
+    nextImg.src = "./images/not-found.png";
+  };
 
   nextName.textContent = nextPokemon.name;
 
@@ -266,7 +276,7 @@ function updatePokemonEvolution(pokemonDados) {
     return;
   }
 
-  if (!pokemonDados) {
+  if (pokemonDados === null || !pokemonDados) {
     return;
   }
 
