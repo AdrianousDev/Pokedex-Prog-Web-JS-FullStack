@@ -1,7 +1,7 @@
 import chamarApi from "./chamarApi.js";
 
 export default async function cardPrincipal(id) {
-  const pokemonDados = await chamarApi(`http://localhost:3000/pokemon/${id}`);
+  const pokemonDados = await chamarApi(`http://localhost:3000/pokemons/${id}`);
 
   updatePokemonImage(pokemonDados);
 
@@ -198,8 +198,9 @@ async function updatePreviousPokemon(pokemonDados) {
     return;
   }
 
-  const idAtual = +pokemonDados.id;
+  const idAtual = pokemonDados.id;
   if (idAtual <= 1) {
+    previousImg.onerror = null;
     divPreviousLateral.dataset.id = "";
     previousImg.src = "";
     previousName.textContent = "";
@@ -207,7 +208,7 @@ async function updatePreviousPokemon(pokemonDados) {
     return;
   }
 
-  const previousPokemon = await chamarApi(`http://localhost:3000/pokemon/${
+  const previousPokemon = await chamarApi(`http://localhost:3000/pokemons/${
     idAtual - 1
   }
 `);
@@ -217,7 +218,6 @@ async function updatePreviousPokemon(pokemonDados) {
   }
 
   const idPrevious = previousPokemon.id;
-
   divPreviousLateral.dataset.id = idPrevious;
 
   previousImg.src = previousPokemon.sprites.front_default;
@@ -246,7 +246,7 @@ async function updateNextPokemon(pokemonDados) {
   }
 
   const idAtual = +pokemonDados.id;
-  const nextPokemon = await chamarApi(`http://localhost:3000/pokemon/${
+  const nextPokemon = await chamarApi(`http://localhost:3000/pokemons/${
     idAtual + 1
   }
 `);

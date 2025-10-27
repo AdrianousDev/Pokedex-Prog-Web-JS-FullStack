@@ -5,6 +5,8 @@ export default async function chamarApi(url) {
     const data = await response.json();
     return data;
   } catch (error) {
+    const stack = new Error().stack;
+    console.log("Chamar API foi chamado por:\n", stack);
     console.error("Erro ao chamar API:", error);
     return null;
   }
