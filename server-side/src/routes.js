@@ -20,12 +20,34 @@ export default async function routes(req, res) {
       path.startsWith("/pokemons") &&
       url.search.startsWith("?offset=")
     ) {
+      const parsedOffset = Number(offset);
+
+      if (isNaN(parsedOffset) || parsedOffset < 0) {
+        res.statusCode = 400;
+        return res.end(
+          JSON.stringify({
+            message: "Parâmetro 'offset' inválido. Deve ser um número >= 0.",
+          })
+        );
+      }
+
       await pokemonsOffset(res, offset);
       return;
     }
 
     // endpoint para id's
     if (req.method === "GET" && path.startsWith("/pokemons/")) {
+      const id = path.split("/")[2];
+
+      if (!id || isNaN(Number(id)) || Number(id) <= 0) {
+        res.statusCode = 400;
+        return res.end(
+          JSON.stringify({
+            message: "Parâmetro 'id' inválido. Deve ser um número > 0.",
+          })
+        );
+      }
+
       await pokemonId(res, path);
       return;
     }
