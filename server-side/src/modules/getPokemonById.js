@@ -1,4 +1,6 @@
 import chamarApi from "./chamarApi.js";
+import getPokemonDescription from "./getPokemonDescription.js";
+import getPokemonCompleteTypes from "./getPokemonCompleteTypes.js";
 import getPokemonEvolution from "./getPokemonEvolution.js";
 
 export default async function getPokemonById(id) {
@@ -6,19 +8,9 @@ export default async function getPokemonById(id) {
     `https://pokeapi.co/api/v2/pokemon/${id}`
   );
 
-  const dadosDescription =
-    await chamarApi(`https://pokeapi.co/api/v2/pokemon-species/${id}/
-`);
+  const descriptionTratada = await getPokemonDescription(id);
 
-  // preocura o flavor que está em "en"
-  const enDescription = dadosDescription.flavor_text_entries.find(
-    (item) => item.language.name == "en"
-  );
-
-  // regex para tirar \n \f \r
-  const descriptionTratada = enDescription.flavor_text
-    .replace(/[\f\n\r]/g, " ")
-    .toLowerCase();
+  const typesComplete = await getPokemonCompleteTypes(pokemonDados);
 
   const evolutions = await getPokemonEvolution(pokemonDados);
 
@@ -39,7 +31,9 @@ export default async function getPokemonById(id) {
       name: s.stat.name,
       base_value: s.base_stat,
     })),
-    types: pokemonDados.types.map((t) => t.type.name),
+    types: typesComplete.types,
+    strengths: typesComplete.strengths,
+    weaknesses: typesComplete.weaknesses,
     evolutions,
   };
 }
