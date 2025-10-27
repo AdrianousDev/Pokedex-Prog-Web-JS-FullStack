@@ -19,6 +19,8 @@ export default async function cardPrincipal(id) {
 
   updatePokemonTypes(pokemonDados);
 
+  updatePokemonTypesComparison(pokemonDados);
+
   updatePreviousPokemon(pokemonDados);
 
   updateNextPokemon(pokemonDados);
@@ -181,6 +183,52 @@ function updatePokemonTypes(pokemonDados) {
     const colorType = colorsTypes[pokemonType] || "bg-gray-500";
     span.className = `${colorType} text-white font-semibold px-4 py-2 rounded-full shadow-sm backdrop-blur-sm border border-white/10`;
     pokemonDivTypes.appendChild(span);
+  });
+}
+
+function updatePokemonTypesComparison(pokemonDados) {
+  const pokemonDivStrengths = document.querySelector("#pokemonDivStrengths");
+  const pokemonDivWeaknesses = document.querySelector("#pokemonDivWeaknesses");
+
+  const colorsTypes = {
+    normal: "bg-gray-400",
+    fire: "bg-red-500",
+    water: "bg-blue-500",
+    grass: "bg-green-500",
+    electric: "bg-yellow-400 text-black",
+    ice: "bg-cyan-300 text-black",
+    fighting: "bg-orange-700",
+    poison: "bg-purple-500",
+    ground: "bg-amber-700",
+    flying: "bg-indigo-400",
+    psychic: "bg-pink-500",
+    bug: "bg-lime-600",
+    rock: "bg-stone-500",
+    ghost: "bg-violet-700",
+    dragon: "bg-indigo-700",
+    dark: "bg-gray-700",
+    steel: "bg-slate-400",
+    fairy: "bg-pink-300 text-black",
+  };
+
+  pokemonDivStrengths.innerHTML = "";
+  pokemonDados.strengths.forEach((type) => {
+    const span = document.createElement("span");
+    const pokemonType = type.toLowerCase();
+    span.textContent = pokemonType;
+    const colorType = colorsTypes[pokemonType] || "bg-gray-500";
+    span.className = `${colorType} text-white font-semibold px-4 py-2 rounded-full shadow-sm backdrop-blur-sm border border-white/10`;
+    pokemonDivStrengths.appendChild(span);
+  });
+
+  pokemonDivWeaknesses.innerHTML = "";
+  pokemonDados.weaknesses.forEach((type) => {
+    const span = document.createElement("span");
+    const pokemonType = type.toLowerCase();
+    span.textContent = pokemonType;
+    const colorType = colorsTypes[pokemonType] || "bg-gray-500";
+    span.className = `${colorType} text-white font-semibold px-4 py-2 rounded-full shadow-sm backdrop-blur-sm border border-white/10`;
+    pokemonDivWeaknesses.appendChild(span);
   });
 }
 
